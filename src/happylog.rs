@@ -1,10 +1,10 @@
 use std::fs;
 use std::sync::Once;
-use log::{debug, error, info, LevelFilter, trace, warn};
 use log4rs::append::console::ConsoleAppender;
 use log4rs::Config;
 use log4rs::config::{Appender, Root};
 use log4rs::encode::pattern::PatternEncoder;
+use log::{error, info, LevelFilter};
 
 static INIT: Once = Once::new();
 
@@ -61,114 +61,86 @@ impl HappyLog {
             Self::_init_default_log(LevelFilter::Info);
         }
     }
-
-    pub fn enter_fn(fn_name: &str) {
-        trace!("Enter function: {}", fn_name);
-    }
-
-    pub fn exit_fn(fn_name: &str) {
-        trace!("Exit function: {}", fn_name);
-    }
-
-    pub fn error(s: &str) {
-        error!("{}", s);
-    }
-
-    pub fn warn(s: &str) {
-        warn!("{}", s);
-    }
-
-    pub fn info(s: &str) {
-        info!("{}", s);
-    }
-
-    pub fn debug(s: &str) {
-        debug!("{}", s);
-    }
-
-    pub fn trace(s: &str) {
-        trace!("{}", s);
-    }
-
-    pub fn input(name: &str, value: &str) {
-        trace!("input->{}={}", name, value);
-    }
-
-    pub fn output(name: &str, value: &str) {
-        trace!("output->{}={}", name, value);
-    }
-
-    pub fn var(name: &str, value: &str) {
-        trace!("var->{}={}", name, value);
-    }
 }
 
 #[macro_export]
 macro_rules! hlenter_fn {
     ($fn_name:tt) => {
-        happy_rust::happylog::HappyLog::enter_fn($fn_name);
+        log::trace!("Enter function: {}", $fn_name);
     };
 }
 
 #[macro_export]
 macro_rules! hlinput {
     ($name:tt, $value:tt) => {
-        happy_rust::happylog::HappyLog::input($name, $value);
+        log::trace!("input->{}={}", $name, $value);
+    };
+
+    ($name:tt, $($arg:tt)+) => {
+        log::trace!("input->{}={}", $name, format!("{}", format_args!($($arg)+)).as_str());
     };
 }
 
 #[macro_export]
 macro_rules! hlvar {
     ($name:tt, $value:tt) => {
-        happy_rust::happylog::HappyLog::var($name, $value);
+        log::trace!("var->{}={}", $name, $value);
+    };
+
+    ($name:tt, $($arg:tt)+) => {
+        log::trace!("var->{}={}", $name, format!("{}", format_args!($($arg)+)).as_str());
     };
 }
 
 #[macro_export]
 macro_rules! hlerror {
-    ($s:tt) => {
-        happy_rust::happylog::HappyLog::error($s);
+    ($($arg:tt)+) => {
+        log::trace!("{}", format_args!($($arg)+));
     };
 }
 
 #[macro_export]
 macro_rules! hlwarn {
-    ($s:tt) => {
-        happy_rust::happylog::HappyLog::warn($s);
+    ($($arg:tt)+) => {
+        log::warn!("{}", format_args!($($arg)+));
     };
 }
 
 #[macro_export]
 macro_rules! hlinfo {
-    ($s:tt) => {
-        happy_rust::happylog::HappyLog::info($s);
+    ($($arg:tt)+) => {
+        log::info!("{}", format_args!($($arg)+));
     };
 }
 
 #[macro_export]
 macro_rules! hldebug {
-    ($s:tt) => {
-        happy_rust::happylog::HappyLog::debug($s);
+    ($($arg:tt)+) => {
+        log::debug!("{}", format_args!($($arg)+));
     };
 }
 
 #[macro_export]
 macro_rules! hltrace {
-    ($s:tt) => {
-        happy_rust::happylog::HappyLog::trace($s);
+    ($($arg:tt)+) => {
+        log::trace!("{}", format_args!($($arg)+));
     };
 }
 
 #[macro_export]
 macro_rules! hloutput {
     ($name:tt, $value:tt) => {
-        happy_rust::happylog::HappyLog::output($name, $value);
+        log::trace!("output->{}={}", $name, $value);
+    };
+
+    ($name:tt, $($arg:tt)+) => {
+        log::trace!("output->{}={}", $name, format!("{}", format_args!($($arg)+)).as_str());
     };
 }
 
 #[macro_export]
 macro_rules! hlexit_fn {
     ($fn_name:tt) => {
-        happy_rust::happylog::HappyLog::exit_fn($fn_name);
+        log::trace!("Exit function: {}", $fn_name);
     };
 }
