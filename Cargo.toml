@@ -1,0 +1,11 @@
+[package]
+name = "happy-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "~0.4.17"
+log4rs = "~1.2.0"
+
+[dev-dependencies]
+logtest = "~2.0.0"
