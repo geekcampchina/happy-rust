@@ -2,6 +2,14 @@
 name = "happy-rust"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "happy-rust让编程轻松愉快"
+documentation = "https://docs.rs/happy-rust"
+readme = "README.md"
+homepage = "https://github.com/geekcampchina/happy-rust"
+repository = "https://github.com/geekcampchina/happy-rust"
+keywords = ["happy", "util"]
+categories = ["algorithms", "development-tools", "filesystem"]
 
 [dependencies]
 log = "~0.4.17"
