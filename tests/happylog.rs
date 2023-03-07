@@ -1,4 +1,3 @@
-use happy_rust::happylog::HappyLog;
 use happy_rust::{hldebug, hlenter_fn, hlerror, hlexit_fn, hlinfo, hlinput, hloutput, hltrace, hlvar, hlwarn};
 
 #[test]

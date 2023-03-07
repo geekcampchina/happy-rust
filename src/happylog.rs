@@ -106,69 +106,69 @@ impl HappyLog {
 #[macro_export]
 macro_rules! hlenter_fn {
     ($fn_name:tt) => {
-        HappyLog::enter_fn($fn_name);
+        happy_rust::happylog::HappyLog::enter_fn($fn_name);
     };
 }
 
 #[macro_export]
 macro_rules! hlinput {
     ($name:tt, $value:tt) => {
-        HappyLog::input($name, $value);
+        happy_rust::happylog::HappyLog::input($name, $value);
     };
 }
 
 #[macro_export]
 macro_rules! hlvar {
     ($name:tt, $value:tt) => {
-        HappyLog::var($name, $value);
+        happy_rust::happylog::HappyLog::var($name, $value);
     };
 }
 
 #[macro_export]
 macro_rules! hlerror {
     ($s:tt) => {
-        HappyLog::error($s);
+        happy_rust::happylog::HappyLog::error($s);
     };
 }
 
 #[macro_export]
 macro_rules! hlwarn {
     ($s:tt) => {
-        HappyLog::warn($s);
+        happy_rust::happylog::HappyLog::warn($s);
     };
 }
 
 #[macro_export]
 macro_rules! hlinfo {
     ($s:tt) => {
-        HappyLog::info($s);
+        happy_rust::happylog::HappyLog::info($s);
     };
 }
 
 #[macro_export]
 macro_rules! hldebug {
     ($s:tt) => {
-        HappyLog::debug($s);
+        happy_rust::happylog::HappyLog::debug($s);
     };
 }
 
 #[macro_export]
 macro_rules! hltrace {
     ($s:tt) => {
-        HappyLog::trace($s);
+        happy_rust::happylog::HappyLog::trace($s);
     };
 }
 
 #[macro_export]
 macro_rules! hloutput {
     ($name:tt, $value:tt) => {
-        HappyLog::output($name, $value);
+        happy_rust::happylog::HappyLog::output($name, $value);
     };
 }
 
 #[macro_export]
 macro_rules! hlexit_fn {
     ($fn_name:tt) => {
-        HappyLog::exit_fn($fn_name);
+        happy_rust::happylog::HappyLog::exit_fn($fn_name);
     };
 }
