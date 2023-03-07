@@ -62,12 +62,12 @@ impl HappyLog {
         }
     }
 
-    pub fn enter_fn(func_name: &str) {
-        trace!("Enter function: {}", func_name);
+    pub fn enter_fn(fn_name: &str) {
+        trace!("Enter function: {}", fn_name);
     }
 
-    pub fn exit_fn(func_name: &str) {
-        trace!("Exit function: {}", func_name);
+    pub fn exit_fn(fn_name: &str) {
+        trace!("Exit function: {}", fn_name);
     }
 
     pub fn error(s: &str) {
@@ -101,4 +101,74 @@ impl HappyLog {
     pub fn var(name: &str, value: &str) {
         trace!("var->{}={}", name, value);
     }
+}
+
+#[macro_export]
+macro_rules! hlenter_fn {
+    ($fn_name:tt) => {
+        HappyLog::enter_fn($fn_name);
+    };
+}
+
+#[macro_export]
+macro_rules! hlinput {
+    ($name:tt, $value:tt) => {
+        HappyLog::input($name, $value);
+    };
+}
+
+#[macro_export]
+macro_rules! hlvar {
+    ($name:tt, $value:tt) => {
+        HappyLog::var($name, $value);
+    };
+}
+
+#[macro_export]
+macro_rules! hlerror {
+    ($s:tt) => {
+        HappyLog::error($s);
+    };
+}
+
+#[macro_export]
+macro_rules! hlwarn {
+    ($s:tt) => {
+        HappyLog::warn($s);
+    };
+}
+
+#[macro_export]
+macro_rules! hlinfo {
+    ($s:tt) => {
+        HappyLog::info($s);
+    };
+}
+
+#[macro_export]
+macro_rules! hldebug {
+    ($s:tt) => {
+        HappyLog::debug($s);
+    };
+}
+
+#[macro_export]
+macro_rules! hltrace {
+    ($s:tt) => {
+        HappyLog::trace($s);
+    };
+}
+
+#[macro_export]
+macro_rules! hloutput {
+    ($name:tt, $value:tt) => {
+        HappyLog::output($name, $value);
+    };
+}
+
+#[macro_export]
+macro_rules! hlexit_fn {
+    ($fn_name:tt) => {
+        HappyLog::exit_fn($fn_name);
+    };
 }
